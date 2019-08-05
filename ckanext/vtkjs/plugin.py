@@ -33,6 +33,7 @@ def view_file(pkg_id, resource_id):
     else:
         return base.render("vtkjs_view_vtk.html", extra_vars={'url': resource["url"]})
 
+
 class VtkjsPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IResourceView)
@@ -52,12 +53,11 @@ class VtkjsPlugin(plugins.SingletonPlugin):
     # IResourceView
 
     def info(self):
-        return { "name": "vtkjs",
-            "title": toolkit._("VTK and STL Viewer"),
-            "icon": "cube",
-            "default_title": toolkit._("VTK and STL Viewer"),
-            "iframed": False
-        }
+        return {"name": "vtkjs",
+                "title": toolkit._("VTK and STL Viewer"),
+                "icon": "cube",
+                "default_title": toolkit._("VTK and STL Viewer"),
+                "iframed": False}
 
     def can_view(self, data_dict):
         resource = data_dict["resource"]

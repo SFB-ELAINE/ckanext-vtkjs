@@ -1,12 +1,12 @@
-.. image:: https://travis-ci.org//ckanext-vtkjs.svg?branch=master
-    :target: https://travis-ci.org//ckanext-vtkjs
+.. image:: https://travis-ci.org/SFB-ELAINE/ckanext-vtkjs.svg?branch=master
+    :target: https://travis-ci.org/SFB-ELAINE/ckanext-vtkjs
 
 =============
 ckanext-vtkjs
 =============
 
 This is a CKAN extension that provides views for STL and some VTK files
-(currently only `polydata` formats) for CKAN resources. 
+(currently only `polydata` formats) for CKAN resources.
 
 ------------
 Requirements
