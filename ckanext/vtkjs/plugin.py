@@ -14,6 +14,7 @@ NotAuthorized = logic.NotAuthorized
 
 
 def view_file(pkg_id, resource_id):
+    # check access to the resource
     try:
         context = {
             u'model': model,
@@ -22,12 +23,15 @@ def view_file(pkg_id, resource_id):
             u'for_view': True,
             u'auth_user_obj': g.userobj
         }
-        # TODO: CHECK ACCESS
         helpers.check_access(u'resource_show', {'id': resource_id})
     except NotAuthorized:
         base.abort(403, _(u'Not authorized to view this resource'))
     resource = toolkit.get_action('resource_show')(context, {'id': resource_id, 'include_tracking': False})
-    return base.render("vtkjs_view.html", extra_vars={'url': resource["url"]})
+    # use the correct javascript file to render the data for the resource's format
+    if (resource["format"].lower() == "stl"):
+        return base.render("vtkjs_view_stl.html", extra_vars={'url': resource["url"]})
+    else:
+        return base.render("vtkjs_view_vtk.html", extra_vars={'url': resource["url"]})
 
 class VtkjsPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
@@ -47,12 +51,11 @@ class VtkjsPlugin(plugins.SingletonPlugin):
 
     # IResourceView
 
-    # TODO: rename view to something more user friendly
     def info(self):
         return { "name": "vtkjs",
-            "title": toolkit._("VTK.js"),
+            "title": toolkit._("VTK and STL Viewer"),
             "icon": "cube",
-            "default_title": toolkit._("VTK.js"),
+            "default_title": toolkit._("VTK and STL Viewer"),
             "iframed": False
         }
 
