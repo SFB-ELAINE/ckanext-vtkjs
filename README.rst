@@ -1,45 +1,18 @@
-.. You should enable this project on travis-ci.org and coveralls.io to make
-   these badges work. The necessary Travis and Coverage config files have been
-   generated for you.
-
 .. image:: https://travis-ci.org//ckanext-vtkjs.svg?branch=master
     :target: https://travis-ci.org//ckanext-vtkjs
-
-.. image:: https://coveralls.io/repos//ckanext-vtkjs/badge.svg
-  :target: https://coveralls.io/r//ckanext-vtkjs
-
-.. image:: https://img.shields.io/pypi/v/ckanext-vtkjs.svg
-    :target: https://pypi.org/project/ckanext-vtkjs/
-    :alt: Latest Version
-
-.. image:: https://img.shields.io/pypi/pyversions/ckanext-vtkjs.svg
-    :target: https://pypi.org/project/ckanext-vtkjs/
-    :alt: Supported Python versions
-
-.. image:: https://img.shields.io/pypi/status/ckanext-vtkjs.svg
-    :target: https://pypi.org/project/ckanext-vtkjs/
-    :alt: Development Status
-
-.. image:: https://img.shields.io/pypi/l/ckanext-vtkjs.svg
-    :target: https://pypi.org/project/ckanext-vtkjs/
-    :alt: License
 
 =============
 ckanext-vtkjs
 =============
 
-.. Put a description of your extension here:
-   What does it do? What features does it have?
-   Consider including some screenshots or embedding a video!
-
+This is a CKAN extension that provides views for STL and some VTK files
+(currently only `polydata` formats) for CKAN resources. 
 
 ------------
 Requirements
 ------------
 
-For example, you might want to mention here which versions of CKAN this
-extension works with.
-
+Tested with CKAN 2.9.0a.
 
 ------------
 Installation
@@ -63,6 +36,9 @@ To install ckanext-vtkjs:
    config file (by default the config file is located at
    ``/etc/ckan/default/production.ini``).
 
+4. Add ``vtkjs`` to the ``ckan.views.default_views`` setting in your CKAN
+    config file.
+
 4. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
 
      sudo service apache2 reload
@@ -72,7 +48,7 @@ To install ckanext-vtkjs:
 Config settings
 ---------------
 
-None at present
+None at present.
 
 .. Document any optional config settings here. For example::
 
@@ -106,40 +82,3 @@ To run the tests and produce a coverage report, first make sure you have
 coverage installed in your virtualenv (``pip install coverage``) then run::
 
     nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.vtkjs --cover-inclusive --cover-erase --cover-tests
-
-
-----------------------------------------
-Releasing a new version of ckanext-vtkjs
-----------------------------------------
-
-ckanext-vtkjs should be available on PyPI as https://pypi.org/project/ckanext-vtkjs.
-To publish a new version to PyPI follow these steps:
-
-1. Update the version number in the ``setup.py`` file.
-   See `PEP 440 <http://legacy.python.org/dev/peps/pep-0440/#public-version-identifiers>`_
-   for how to choose version numbers.
-
-2. Make sure you have the latest version of necessary packages::
-
-    pip install --upgrade setuptools wheel twine
-
-3. Create a source and binary distributions of the new version::
-
-       python setup.py sdist bdist_wheel && twine check dist/*
-
-   Fix any errors you get.
-
-4. Upload the source distribution to PyPI::
-
-       twine upload dist/*
-
-5. Commit any outstanding changes::
-
-       git commit -a
-
-6. Tag the new release of the project on GitHub with the version number from
-   the ``setup.py`` file. For example if the version number in ``setup.py`` is
-   0.0.1 then do::
-
-       git tag 0.0.1
-       git push --tags
