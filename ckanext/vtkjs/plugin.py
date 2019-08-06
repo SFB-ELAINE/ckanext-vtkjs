@@ -13,13 +13,15 @@ import zipfile
 log = logging.getLogger(__name__)
 NotAuthorized = logic.NotAuthorized
 
+
 def get_filepath(resource_id):
     '''
     Returns the path to the location of the file associated with
     the resource with the given resource ID.
     '''
     return "/var/lib/ckan/default/resources/" + resource_id[0:3] + \
-            "/" + resource_id[3:6] + "/" + resource_id[6:]
+        "/" + resource_id[3:6] + "/" + resource_id[6:]
+
 
 def view_file(pkg_id, resource_id):
     # check access to the resource
@@ -122,8 +124,8 @@ class VtkjsPlugin(plugins.SingletonPlugin):
                     if item[-4:] == ".obj":
                         found_obj = True
         if found_obj or resource["format"].lower() == "vtp" or \
-            resource["format"].lower() == "vti" or \
-            resource["format"].lower() == "stl":
+                resource["format"].lower() == "vti" or \
+                resource["format"].lower() == "stl":
             toolkit.get_action('resource_view_create')(context, {
                                     'resource_id': resource['id'],
                                     'title': '3D Viewer',
