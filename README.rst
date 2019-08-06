@@ -5,8 +5,8 @@
 ckanext-vtkjs
 =============
 
-This is a CKAN extension that provides views for STL and some VTK files
-(currently only `polydata` formats) for CKAN resources.
+This is a CKAN extension that provides views for STL, VTP, VTI, and VTK PolyData files,
+as well as ZIP archives containing OBJ files.
 
 ------------
 Requirements
