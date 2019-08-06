@@ -34,10 +34,10 @@ To install ckanext-vtkjs:
 
 3. Add ``vtkjs`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
-   ``/etc/ckan/default/production.ini``).
-
-4. Add ``vtkjs`` to the ``ckan.views.default_views`` setting in your CKAN
-    config file.
+   ``/etc/ckan/default/production.ini``). Do **not** add ``vtkjs`` to the
+   list of default views - the plugin automatically adds itself as a view to
+   any resource it can display, and adding it to the list of default views
+   causes it to be added to some types of resources that it cannot display.
 
 4. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
 
