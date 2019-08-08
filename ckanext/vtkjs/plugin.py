@@ -24,18 +24,18 @@ def get_filepath(resource_id):
 
 
 def view_file(pkg_id, resource_id):
+    context = {
+        u'model': model,
+        u'session': model.Session,
+        u'user': g.user,
+        u'for_view': True,
+        u'auth_user_obj': g.userobj
+    }
     # check access to the resource
-    try:
-        context = {
-            u'model': model,
-            u'session': model.Session,
-            u'user': g.user,
-            u'for_view': True,
-            u'auth_user_obj': g.userobj
-        }
-        helpers.check_access(u'resource_show', {'id': resource_id})
-    except NotAuthorized:
-        base.abort(403, _(u'Not authorized to view this resource'))
+    ret = helpers.check_access(u'resource_show', {'id': resource_id})
+    if not ret:
+        return base.render("not_authorized.html")
+
     resource = toolkit.get_action('resource_show')(context, {'id': resource_id, 'include_tracking': False})
     # use the correct javascript file to render the data for the resource's format
     if (resource["format"].lower() == "stl"):
