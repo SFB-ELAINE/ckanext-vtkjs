@@ -5,7 +5,7 @@ import ckan.lib.base as base
 import ckan.lib.helpers as helpers
 from flask import Blueprint
 import ckan.model as model
-from ckan.common import g, _
+from ckan.common import g
 import ckan.logic as logic
 import logging
 import zipfile
