@@ -9,6 +9,7 @@ from ckan.common import g
 import ckan.logic as logic
 import logging
 import zipfile
+import os
 
 log = logging.getLogger(__name__)
 NotAuthorized = logic.NotAuthorized
@@ -19,8 +20,15 @@ def get_filepath(resource_id):
     Returns the path to the location of the file associated with
     the resource with the given resource ID.
     '''
-    return "/var/lib/ckan/default/resources/" + resource_id[0:3] + \
-        "/" + resource_id[3:6] + "/" + resource_id[6:]
+    filepath = ""
+    # determine the absolute path to the resources directory
+    for root, dirs, files in os.walk("/var/lib/ckan", topdown=True):
+        for name in dirs:
+            if name == "resources":
+                filepath = os.path.join(root, name)
+
+    return filepath + "/" + resource_id[0:3] + "/" + \
+        resource_id[3:6] + "/" + resource_id[6:]
 
 
 def view_file(pkg_id, resource_id):
