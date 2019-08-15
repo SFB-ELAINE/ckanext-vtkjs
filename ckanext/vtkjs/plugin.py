@@ -102,7 +102,6 @@ class VtkjsPlugin(plugins.SingletonPlugin):
 
     def get_blueprint(self):
         blueprint = Blueprint('vtkjs', self.__module__)
-        # blueprint.add_url_rule(u'/dataset/<pkg_id>/resource/<filename>/paraview', 'resource_paraview', resource_paraview)
         blueprint.add_url_rule(u'/dataset/<pkg_id>/resource/<resource_id>/vtkjs', 'vtkjs', view_file)
         return blueprint
 
